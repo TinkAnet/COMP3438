@@ -9,7 +9,7 @@ int main() {
     char input[256];
     int len;
 
-    fd = open("/dev/comp3438helloworld_dev_file", O_WRONLY);
+    fd = open("/dev/echo_driver", O_WRONLY);
     if (fd == -1) {
         printf("Failed to open device file");
         return;
