@@ -1,27 +1,21 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
 #include <unistd.h>
-#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
-int main() {
+void main() {
     int fd;
-    char input[256];
-    int len;
-
+    int count;
+    char buf[256];
     fd = open("/dev/echo_driver", O_WRONLY);
     if (fd == -1) {
-        printf("Failed to open device file");
+        printf("Fail to open device file.\n");
         return;
     }
-
-    printf("Enter a string to echo: ");
-    fgets(input, sizeof(input), stdin);
-    len = strlen(input);
-
-    if (write(fd, input, len) < 0) {
-        printf("Failed to write to device file");
-    }
+    printf("String to echo: ");
+    fget(buf,sizeof(buf),stdin);
+    write(fd, buf, 256);
     close(fd);
-    return;
 }
+
